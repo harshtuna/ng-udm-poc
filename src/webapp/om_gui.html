@@ -169,6 +169,23 @@
     </div>
 </div>
 
+<div class="container" data-ng-controller="UserModelController as userModel">
+    <div class="row">
+        <div>Current version: {{currentVersion}}</div>
+        <div>Next version: {{currentVersion + 1}}</div>
+        <div class="well">{{myTemplate}}</div>
+        <div class="well">
+            <label class="control-label">
+                Add new task
+                <input type="text" data-ng-model="newTask">
+            </label>
+            <button type="submit" data-ng-click="addTask(newTask)">Add Task</button>
+            <button type="submit" data-ng-click="publishTemplate()">Publish</button>
+        </div>
+    </div>
+</div>
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.min.js"></script>
 <script src="js/om_gui.js"></script>

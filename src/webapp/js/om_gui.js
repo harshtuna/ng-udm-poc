@@ -8,7 +8,7 @@
     app.controller('UserDefinedDataController', function userDataController($scope) {
         $scope.myEntities = workItem.userDefinedData;
 
-        $scope.render = function() {
+        $scope.render = function () {
             $scope.myInputs = userDefinedModel[workItem.userDefinedData.templateVersion];
         };
 
@@ -30,6 +30,24 @@
 
     app.controller('WorkItemController', function workItemController() {
         this.data = workItem;
+    });
+
+    app.controller('UserModelController', function userModelController($scope) {
+        $scope.currentVersion = 2;
+        $scope.myTemplate = angular.copy(userDefinedModel[$scope.currentVersion]);
+        $scope.newTask = "New task";
+        $scope.addTask = function (taskName) {
+            $scope.myTemplate.push({
+                "attribute": taskName,
+                "values": ["In Progress", "Complete", "Not Applicable"],
+                "type": "radio"
+            });
+        };
+        $scope.publishTemplate = function() {
+            $scope.currentVersion++;
+            userDefinedModel[$scope.currentVersion] = $scope.myTemplate;
+            $scope.myTemplate = angular.copy(userDefinedModel[$scope.currentVersion]);
+        };
     });
 
     var userDefinedModel = {
